@@ -1,37 +1,5 @@
-export type Weather = {
-    latitude: number;
-    longitude: number; 
-    generationtime_ms: number;
-    utc_offset_seconds: number;
-    timezone: string;
-    timezone_abbreviation: string;
-    elevation: number;
-    current_weather_units: CurrentWeatherUnits;
-    current_weather: CurrentWeather;
-}
-
-export type CurrentWeatherUnits = {
-    time: string;
-    interval: string;
-    temperature: string;
-    windspeed: string;
-    winddirection: string;
-    is_day: string;
-    weathercode: string;
-}
-
-export type CurrentWeather = {
-    time: string;
-    interval: number;
-    temperature: number;
-    windspeed: number;
-    winddirection: number;
-    is_day: number;
-    weathercode: number;
-}
-
-// Weather Codes 
-export const weatherCodeDescriptions: { [key: number]: string } = {
+export const getWeatherCodes = (code: number) => {
+  const weatherCodeDescriptions: { [key: number]: string } = {
     0: "Clear sky",
     1: "Mainly clear",
     2: "Partly cloudy",
@@ -58,6 +26,38 @@ export const weatherCodeDescriptions: { [key: number]: string } = {
     85: "Snow showers slight and heavy",
     86: "Snow showers slight and heavy",
     95: "Thunderstorm: Slight or moderate",
-    96: "Thunderstorm with slight and heavy hail",
-    99: "Thunderstorm with slight and heavy hail"
+  };
+  return weatherCodeDescriptions[code] || "Unknown weather code";
 };
+
+export const getWeatherIcon = (code: number) => {
+    const weatherIcons: { [key: number]: string } = {
+        0: "☀️",
+        1: "🌤️",    
+        2: "⛅",
+        3: "☁️",
+        45: "🌫️",
+        48: "🌫️",
+        51: "🌧️",
+        53: "🌧️",
+        55: "🌧️",
+        56: "🌧️❄️",
+        57: "🌧️❄️",
+        61: "🌧️",
+        63: "🌧️",   
+        65: "🌧️",
+        66: "🌧️❄️",
+        67: "🌧️❄️",
+        71: "❄️",
+        73: "❄️",
+        75: "❄️",
+        77: "❄️",
+        80: "🌧️",
+        81: "🌧️",
+        82: "🌧️",
+        85: "❄️",
+        86: "❄️",
+        95: "⛈️",
+    };
+    return weatherIcons[code] || "❓";
+}

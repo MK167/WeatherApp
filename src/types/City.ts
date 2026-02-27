@@ -20,4 +20,5 @@ export type CityData = {
   admin2_id?: number;
   admin3_id?: number;
   postcodes?: string[];
+  updatedAt: Date;
 };

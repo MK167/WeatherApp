@@ -71,7 +71,8 @@ function Search({ onCitiesChange }: SearchProps) {
 
   // Handle click on a city from the list to select it and notify parent component 
   const handleCityClick = (city: CityData) => {
-    onCitiesChange([city]);
+    const updated = { ...city, updatedAt: new Date() };
+    onCitiesChange([updated]);
     setCities([]);
     setQuery("");
   };
