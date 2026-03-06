@@ -7,6 +7,7 @@ import {
   type FormInputs,
   formGroup,
 } from "../validation/registerationValidation";
+import InputElement from "./Form/InputElement";
 
 function BasicForm() {
   const {
@@ -20,92 +21,132 @@ function BasicForm() {
   };
 
   return (
-    <div className="container mt-5 col-sm-12">
+    <div className="container mt-5 col-sm-12 form-container">
       <Row className="justify-content-md-center">
         <Col md={12}>
           <h3 className="mb-3">Basic Form For Registeration</h3>
-          <Form onSubmit={handleSubmit(onSubmit)}>
-            <Form.Group className="mb-3" controlId="formBasicFirstName">
-              <Form.Label>First Name</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter first name"
-                autoComplete="false"
-                isInvalid={!!errors.firstName}
-                {...register("firstName")}
-              />
-              <Form.Control.Feedback type="invalid">
-                {errors.firstName?.message}
-              </Form.Control.Feedback>
-            </Form.Group>
+          <Form>
+            <InputElement
+              name="firstName"
+              label="First Name"
+              type="text"
+              placeholder="Enter first name"
+              autoComplete="false"
+              errors={errors.firstName?.message || ""}
+              register={register}
+            />
 
-            <Form.Group className="mb-3" controlId="formBasicLastName">
-              <Form.Label>Last Name</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter last name"
-                autoComplete="false"
-                isInvalid={!!errors.lastName}
-                {...register("lastName")}
-              />
-              <Form.Control.Feedback type="invalid">
-                {errors.lastName?.message}
-              </Form.Control.Feedback>
-            </Form.Group>
+            <InputElement
+              name="lastName"
+              label="Last Name"
+              type="text"
+              placeholder="Enter last name"
+              autoComplete="false"
+              errors={errors.lastName?.message || ""}
+              register={register}
+            />
+            <InputElement
+              name="email"
+              label="Email address"
+              type="email"
+              placeholder="Enter email"
+              autoComplete="false"
+              errors={errors.email?.message || ""}
+              register={register}
+            />
 
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label>Email address</Form.Label>
-              <Form.Control
-                type="email"
-                placeholder="Enter email"
-                autoComplete="false"
-                isInvalid={!!errors.email}
-                {...register("email")}
-              />
-              <Form.Control.Feedback type="invalid">
-                {errors.email?.message}
-              </Form.Control.Feedback>
-            </Form.Group>
+            <InputElement
+              name="password"
+              label="Password"
+              type="password"
+              placeholder="Password"
+              autoComplete="false"
+              errors={errors.password?.message || ""}
+              register={register}
+            />
 
-            <Form.Group className="mb-3" controlId="formBasicPassword">
-              <Form.Label>Password</Form.Label>
-              <Form.Control
-                type="password"
-                placeholder="Password"
-                autoComplete="false"
-                isInvalid={!!errors.password}
-                {...register("password")}
-              />
-              <Form.Control.Feedback type="invalid">
-                {errors.password?.message}
-              </Form.Control.Feedback>
-            </Form.Group>
+            <InputElement
+              name="confirmPassword"
+              label="Confirm Password"
+              type="password"
+              placeholder="Confirm Password"
+              autoComplete="false"
+              errors={errors.confirmPassword?.message || ""}
+              register={register}
+            />
 
-            <Form.Group className="mb-3" controlId="formBasicConfirmPassword">
-              <Form.Label>Confirm Password</Form.Label>
-              <Form.Control
-                type="password"
-                placeholder="Confirm Password"
-                autoComplete="false"
-                {...register("confirmPassword")}
-                isInvalid={!!errors.confirmPassword}
-              />
-              <Form.Control.Feedback type="invalid">
-                {errors.confirmPassword?.message}
-              </Form.Control.Feedback>
-            </Form.Group>
+            <InputElement
+              name="phone"
+              label="Phone Number"
+              type="tel"
+              placeholder="Enter phone number"
+              autoComplete="tel"
+              errors={errors.phone?.message || ""}
+              register={register}
+            />
 
-            <Form.Group className="mb-3" controlId="formBasicCheckbox">
-              <Form.Check
-                type="checkbox"
-                label="Check me out"
-                {...register("checkbox")}
-                isInvalid={!!errors.checkbox}
-                feedback={errors.checkbox?.message}
-                feedbackType="invalid"
-              />
-            </Form.Group>
-            <Button variant="primary" type="submit">
+            <InputElement
+              name="country"
+              label="Country"
+              type="select"
+              errors={errors.country?.message || ""}
+              register={register}
+              options={[
+                { value: "us", label: "United States" },
+                { value: "uk", label: "United Kingdom" },
+                { value: "ca", label: "Canada" },
+                { value: "au", label: "Australia" },
+              ]}
+            />
+
+            <InputElement
+              name="gender"
+              label="Gender"
+              type="radio"
+              errors={errors.gender?.message || ""}
+              register={register}
+              options={[
+                { value: "male", label: "Male" },
+                { value: "female", label: "Female" },
+                { value: "other", label: "Other" },
+              ]}
+            />
+
+            <InputElement
+              name="profileImage"
+              label="Upload Image / PDF"
+              type="file"
+              accept="image/jpeg,image/jpg,image/png,application/pdf"
+              errors={errors.profileImage?.message || ""}
+              register={register}
+            />
+
+            <InputElement
+              name="bio"
+              label="Bio"
+              type="textarea"
+              placeholder="Tell us about yourself"
+              rows={4}
+              errors={errors.bio?.message || ""}
+              register={register}
+            />
+
+            <InputElement
+              name="checkbox"
+              label="Accept Terms and Conditions"
+              type="checkbox"
+              placeholder=""
+              errors={errors.checkbox?.message || ""}
+              register={register}
+              autoComplete={""}
+            />
+
+            <Button
+              variant="primary"
+              type="submit"
+              onClick={handleSubmit(onSubmit)}
+              disabled={Object.keys(errors).length > 0}
+            >
               Submit
             </Button>
           </Form>

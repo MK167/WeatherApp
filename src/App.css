@@ -1,4 +1,8 @@
-a.active { 
+a.active {
     color: #007bff;
+}
+
+.form-container {
+    min-height: 100vh;
 }
 
