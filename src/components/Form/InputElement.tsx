@@ -99,11 +99,7 @@ const InputElement = <TFieldValue extends FieldValues>({
     return (
       <Form.Group className="mb-3" controlId={`formBasic${name}`}>
         <Form.Label>{label}</Form.Label>
-        <Form.Control
-          type="date"
-          isInvalid={!!errors}
-          {...register(name)}
-        />
+        <Form.Control type="date" isInvalid={!!errors} {...register(name)} />
         <Form.Control.Feedback type="invalid">{errors}</Form.Control.Feedback>
       </Form.Group>
     );
@@ -124,7 +120,7 @@ const InputElement = <TFieldValue extends FieldValues>({
       </Form.Group>
     );
   }
-
+  // Default to text input for any other type
   return (
     <Form.Group className="mb-3" controlId={`formBasic${name}`}>
       <Form.Label>{label}</Form.Label>
