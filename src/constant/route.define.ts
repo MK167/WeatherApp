@@ -19,4 +19,9 @@ export const NavbarRoutes = [
     name: "Blog",
     path: "/blog",
   },
+  {
+    id: "form",
+    name: "Form",
+    path: "/form",
+  }
 ];

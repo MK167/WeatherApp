@@ -1,5 +1,5 @@
 @import "tailwindcss";
-
+/* The following line can be included in a src/App.scss */
 /* footer */
 footer {
   background-color: #333;
