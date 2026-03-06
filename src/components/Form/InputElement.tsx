@@ -95,6 +95,20 @@ const InputElement = <TFieldValue extends FieldValues>({
     );
   }
 
+  if (type === "date") {
+    return (
+      <Form.Group className="mb-3" controlId={`formBasic${name}`}>
+        <Form.Label>{label}</Form.Label>
+        <Form.Control
+          type="date"
+          isInvalid={!!errors}
+          {...register(name)}
+        />
+        <Form.Control.Feedback type="invalid">{errors}</Form.Control.Feedback>
+      </Form.Group>
+    );
+  }
+
   if (type === "textarea") {
     return (
       <Form.Group className="mb-3" controlId={`formBasic${name}`}>

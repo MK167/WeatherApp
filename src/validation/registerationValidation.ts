@@ -64,6 +64,20 @@ export const formGroup = fb
           ),
         { message: "Only JPG, PNG, or PDF files are allowed" },
       ),
+    dob: fb
+      .string()
+      .nonempty({ message: "Date of birth is required" })
+      .refine(
+        (date) => {
+          const parsedDate = Date.parse(date);
+          if (isNaN(parsedDate)) return false;
+          const age =
+            (Date.now() - parsedDate) / (1000 * 60 * 60 * 24 * 365.25);
+          return age >= 18;
+        },
+        { message: "You must be at least 18 years old" },
+      ),
+
     checkbox: fb.boolean().refine((val) => val === true, {
       message: "You must accept the terms",
     }),
