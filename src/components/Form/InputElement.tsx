@@ -75,7 +75,7 @@ const InputElement = <TFieldValue extends FieldValues>({
             />
           ))}
         </div>
-        <Form.Control.Feedback type="invalid">{errors}</Form.Control.Feedback>
+        {errors && <div className="invalid-feedback d-block">{errors}</div>}
       </Form.Group>
     );
   }

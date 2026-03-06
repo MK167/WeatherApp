@@ -25,7 +25,7 @@ function BasicForm() {
       <Row className="justify-content-md-center">
         <Col md={12}>
           <h3 className="mb-3">Basic Form For Registeration</h3>
-          <Form>
+          <Form onSubmit={handleSubmit(onSubmit)} noValidate>
             <InputElement
               name="firstName"
               label="First Name"
@@ -144,8 +144,6 @@ function BasicForm() {
             <Button
               variant="primary"
               type="submit"
-              onClick={handleSubmit(onSubmit)}
-              disabled={Object.keys(errors).length > 0}
             >
               Submit
             </Button>
